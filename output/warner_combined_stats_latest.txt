@@ -1,0 +1,183 @@
+WARNER COMBINED STATISTICS - LATEST UPDATE
+================================================================================
+
+Generated: December 8, 2025 (Fresh Scrape)
+Date Range: November 15 - December 8, 2025
+Accounts: 4 (Beau, Cody, Gavin, coffeesentiments)
+Total Videos Collected: 272
+
+================================================================================
+COMBINED TOTALS
+================================================================================
+
+Total Videos: 272
+Total Views: 6,410,969
+Total Likes: 795,281
+Overall Average per Video: 23,572 views
+
+================================================================================
+INDIVIDUAL ACCOUNT PERFORMANCE
+================================================================================
+
+1. @beaujenkins (BEAU)
+--------------------------------------------------------------------------------
+Total Videos: 76
+Total Views: 2,531,996
+Total Likes: 235,139
+Avg Views per Video: 33,316
+
+Top 5 Songs:
+  1. Warren Zeiders - "original sound"
+     Uses: 14 | Views: 862,636 | Likes: 42,496
+
+  2. Warren Zeiders - "You For A Reason"
+     Uses: 9 | Views: 642,542 | Likes: 73,413
+
+  3. Warren Zeiders - "Only Bible"
+     Uses: 9 | Views: 291,284 | Likes: 33,444
+
+  4. Gannon Fremin, CCREV - "With or Without Me"
+     Uses: 7 | Views: 173,065 | Likes: 21,314
+
+  5. Blake Whiten - "Rollin' Stone (Full Band Version)"
+     Uses: 5 | Views: 158,088 | Likes: 10,525
+
+Total Unique Songs: 18
+
+
+2. @codyjames6.7 (CODY)
+--------------------------------------------------------------------------------
+Total Videos: 73
+Total Views: 2,261,169
+Total Likes: 387,371
+Avg Views per Video: 30,974
+
+Top 5 Songs:
+  1. Warren Zeiders - "Pretty Little Poison"
+     Uses: 12 | Views: 515,385 | Likes: 92,987
+
+  2. Pecos, the Rooftops - "Hate Waking Up TEASER PRT"
+     Uses: 3 | Views: 471,649 | Likes: 89,459
+
+  3. Zach Bryan - "Pink Skies"
+     Uses: 6 | Views: 416,801 | Likes: 72,256
+
+  4. Pecos, the Rooftops - "Hate Waking Up"
+     Uses: 13 | Views: 326,185 | Likes: 70,626
+
+  5. Blake Whiten - "original sound"
+     Uses: 9 | Views: 202,338 | Likes: 24,749
+
+Total Unique Songs: 14
+
+
+3. @gavin.wilder1 (GAVIN)
+--------------------------------------------------------------------------------
+Total Videos: 67
+Total Views: 1,345,908
+Total Likes: 132,603
+Avg Views per Video: 20,088
+
+Top 5 Songs:
+  1. Warren Zeiders - "You For A Reason"
+     Uses: 7 | Views: 405,332 | Likes: 39,811
+
+  2. Blake Whiten - "Rollin' Stone (Full Band Version)"
+     Uses: 3 | Views: 319,828 | Likes: 15,417
+
+  3. Warren Zeiders - "original sound"
+     Uses: 11 | Views: 132,058 | Likes: 14,477
+
+  4. Gannon Fremin, CCREV - "With or Without Me"
+     Uses: 6 | Views: 107,406 | Likes: 13,076
+
+  5. Blake Whiten - "Hard to Break"
+     Uses: 4 | Views: 92,230 | Likes: 12,011
+
+Total Unique Songs: 16
+
+
+4. @coffeesentiments
+--------------------------------------------------------------------------------
+Total Videos: 56
+Total Views: 271,896
+Total Likes: 40,168
+Avg Views per Video: 4,855
+
+Top 5 Songs:
+  1. Penelope Road - "Feel It Coming My Way"
+     Uses: 7 | Views: 91,368 | Likes: 22,552
+
+  2. Amble - "Swan Song Amble"
+     Uses: 6 | Views: 58,583 | Likes: 3,906
+
+  3. Penelope Road - "Chance Encounter"
+     Uses: 7 | Views: 38,092 | Likes: 3,107
+
+  4. Orville Peck - "Drift Away"
+     Uses: 6 | Views: 30,576 | Likes: 6,370
+
+  5. Amble - "The Rarest Hour"
+     Uses: 11 | Views: 20,786 | Likes: 1,986
+
+Total Unique Songs: 11
+
+================================================================================
+PERFORMANCE RANKINGS
+================================================================================
+
+By Total Views:
+  1. @beaujenkins - 2,531,996 views (39.5%)
+  2. @codyjames6.7 - 2,261,169 views (35.3%)
+  3. @gavin.wilder1 - 1,345,908 views (21.0%)
+  4. @coffeesentiments - 271,896 views (4.2%)
+
+By Average Views per Video:
+  1. @beaujenkins - 33,316 avg
+  2. @codyjames6.7- 30,974 avg
+  3. @gavin.wilder1 - 20,088 avg
+  4. @coffeesentiments - 4,855 avg
+
+By Total Videos Posted:
+  1. @beaujenkins - 76 videos
+  2. @codyjames6.7 - 73 videos
+  3. @gavin.wilder1 - 67 videos
+  4. @coffeesentiments - 56 videos
+
+By Engagement Rate (Likes/Views):
+  1. @codyjames6.7 - 17.1%
+  2. @coffeesentiments - 14.8%
+  3. @gavin.wilder1 - 9.9%
+  4. @beaujenkins - 9.3%
+
+================================================================================
+KEY INSIGHTS
+================================================================================
+
+Top Performing Content:
+- Warren Zeiders songs dominate across Beau, Cody, and Gavin
+- Beau's "original sound" by Warren Zeiders is the #1 performer (862K views)
+- Cody has the highest engagement rate at 17.1%
+- "You For A Reason" by Warren Zeiders performs well across multiple accounts
+
+Account Trends:
+- Beau leads in total views and posting frequency
+- Cody has strongest engagement (most likes relative to views)
+- Gavin has consistent performance with 67 videos
+- coffeesentiments focuses on different artists (Penelope Road, Amble, Orville Peck)
+
+Content Strategy:
+- Warren Zeiders content is the strongest performer
+- Blake Whiten and Gannon Fremin/CCREV also perform well
+- Pecos/the Rooftops "Hate Waking Up" series performing exceptionally on Cody's account
+
+================================================================================
+DETAILED FILES AVAILABLE
+================================================================================
+
+For complete post-by-post breakdowns, see:
+- output/warner_accounts_since_nov15.txt (grouped by song)
+- output/warner_accounts_since_nov15_copy_paste.txt (flat list of all links)
+- output/warner_accounts_stats_nov15_now.txt (detailed account stats)
+
+================================================================================
