@@ -74,3 +74,8 @@ dmypy.json
 # Separate projects/subdirectories
 content-tracker/
 Tracker-Warner/
+
+# Automation folder - contains sensitive login cookies
+automation/cobrand_cookies.pkl
+automation/cobrand_screenshot.png
+automation/campaigns_extracted.json

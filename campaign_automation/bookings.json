@@ -1,0 +1,63 @@
+{
+  "bookings": [
+    {
+      "id": "001takejake_1769093328.827317",
+      "username": "001takejake",
+      "campaign": "dddddd",
+      "price": 55.0,
+      "paypal": "test@paypal.com",
+      "booked_at": "2026-01-22T09:48:48.827370",
+      "status": "paid",
+      "completed_at": "2026-01-22T09:48:57.693250",
+      "notes": ""
+    },
+    {
+      "id": "001takejake_1769093521.768921",
+      "username": "001takejake",
+      "campaign": "test",
+      "price": 200.0,
+      "paypal": "test@paypal.com",
+      "booked_at": "2026-01-22T09:52:01.768996",
+      "status": "paid",
+      "completed_at": "2026-01-22T09:52:18.207973",
+      "notes": ""
+    },
+    {
+      "id": "001takejake_1769093871.665571",
+      "username": "001takejake",
+      "campaign": "dddddddddd",
+      "price": 45.0,
+      "paypal": "test@paypal.com",
+      "booked_at": "2026-01-22T09:57:51.665605",
+      "status": "paid",
+      "completed_at": "2026-01-22T09:58:17.332449",
+      "notes": ""
+    },
+    {
+      "id": "ecfromthedc_1769095956.435059",
+      "username": "ecfromthedc",
+      "campaign": "yada yada campaign",
+      "price": 100.0,
+      "paypal": "tester@paypal.com",
+      "booked_at": "2026-01-22T10:32:36.435071",
+      "status": "paid",
+      "completed_at": "2026-01-22T10:34:27.714325",
+      "notes": ""
+    },
+    {
+      "id": "001takejake_1769096202.843205",
+      "username": "001takejake",
+      "campaign": "test",
+      "price": 56.0,
+      "paypal": "test@paypal.com",
+      "booked_at": "2026-01-22T10:36:42.843219",
+      "status": "payment_needed",
+      "completed_at": "2026-01-22T10:50:41.680446",
+      "notes": ""
+    }
+  ],
+  "paypal_db": {
+    "001takejake": "test@paypal.com",
+    "ecfromthedc": "tester@paypal.com"
+  }
+}

@@ -4,7 +4,14 @@
       "Bash(python -m pip install:*)",
       "Bash(python robust_campaign_scraper.py:*)",
       "Bash(python:*)",
-      "Bash(del /Q \"C:\\Users\\jakeb\\temp_videos\\*.*\")"
+      "Bash(del /Q \"C:\\Users\\jakeb\\temp_videos\\*.*\")",
+      "Bash(dir:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []

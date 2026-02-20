@@ -8,9 +8,16 @@ import subprocess
 import json
 import re
 import argparse
+import time
 from collections import defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
+
+# Scraping configuration
+IMPERSONATE_TARGETS = ['chrome', 'safari', None]  # Fallback chain
+REQUEST_DELAY = 2.5  # Seconds between accounts to avoid rate limiting
+MAX_RETRIES = 3  # Max retry attempts per impersonation target
+RATE_LIMIT_WAIT = 60  # Base wait time for 429 errors (multiplied by attempt)
 
 
 def get_profile_username(url_or_username):
@@ -27,119 +34,158 @@ def build_profile_url(username):
     """Build TikTok profile URL from username"""
     return f"https://www.tiktok.com/@{username}"
 
+def build_yt_dlp_command(profile_url, limit, impersonate_target=None):
+    """Build yt-dlp command with optional impersonation"""
+    import shutil
+
+    # Determine yt-dlp command
+    if shutil.which('yt-dlp'):
+        cmd = ['yt-dlp']
+    else:
+        cmd = [sys.executable, '-m', 'yt_dlp']
+
+    cmd.extend([
+        '--flat-playlist',
+        '--dump-json',
+        '--playlist-end', str(limit),
+    ])
+
+    # Add impersonation if specified
+    if impersonate_target:
+        cmd.extend(['--impersonate', impersonate_target])
+
+    cmd.append(profile_url)
+    return cmd
+
+
 def scrape_account_videos(account, start_datetime=None, end_datetime=None, limit=500):
-    """Scrape videos from a TikTok account and filter by datetime range"""
+    """Scrape videos from a TikTok account with retry logic and impersonation fallback"""
     username = get_profile_username(account)
     if not username:
         print(f"  [ERROR] Could not extract username from: {account}")
         return []
-    
+
     profile_url = build_profile_url(username)
     print(f"  Scraping @{username}...")
-    
-    # Use yt-dlp to get video metadata
-    import sys
-    import shutil
-    
-    yt_dlp_cmd = 'yt-dlp'
-    if not shutil.which('yt-dlp'):
-        yt_dlp_cmd = [sys.executable, '-m', 'yt_dlp']
-    
-    cmd = [
-        yt_dlp_cmd if isinstance(yt_dlp_cmd, str) else yt_dlp_cmd[0],
-        '--flat-playlist',
-        '--dump-json',
-        '--playlist-end', str(limit),
-        profile_url
-    ]
-    
-    if not isinstance(yt_dlp_cmd, str):
-        cmd = [sys.executable, '-m', 'yt_dlp'] + cmd[1:]
-    
-    try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
-        
-        if result.returncode != 0:
-            print(f"    [ERROR] Failed to scrape: {result.stderr[:200]}")
-            return []
-        
-        videos = []
-        total_fetched = 0
-        skipped_old = 0
-        
-        for line in result.stdout.strip().split('\n'):
-            if not line:
-                continue
+
+    # Try each impersonation target with retries
+    last_error = None
+    for impersonate_target in IMPERSONATE_TARGETS:
+        target_name = impersonate_target or 'none'
+
+        for attempt in range(MAX_RETRIES):
+            cmd = build_yt_dlp_command(profile_url, limit, impersonate_target)
+
             try:
-                video_data = json.loads(line)
-                total_fetched += 1
-                
-                # Extract song info
-                track = video_data.get('track', '') or 'Unknown'
-                artist = video_data.get('artist', '') or (video_data.get('artists', [])[0] if video_data.get('artists') else 'Unknown')
-                
-                # Get video URL
-                video_url = video_data.get('webpage_url') or video_data.get('url', '')
-                
-                if not video_url:
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+
+                # Check for rate limiting (429)
+                if '429' in result.stderr or 'Too Many Requests' in result.stderr:
+                    wait_time = RATE_LIMIT_WAIT * (attempt + 1)
+                    print(f"    [RATE LIMITED] Waiting {wait_time}s before retry ({attempt + 1}/{MAX_RETRIES})...")
+                    time.sleep(wait_time)
                     continue
-                
-                # Determine posted datetime - try multiple methods
-                video_dt = None
-                
-                # Method 1: Use timestamp (most accurate)
-                timestamp = video_data.get('timestamp')
-                if timestamp:
-                    try:
-                        video_dt = datetime.fromtimestamp(timestamp)
-                    except (ValueError, OSError):
-                        pass
-                
-                # Method 2: Use upload_date (YYYYMMDD format)
-                if not video_dt:
-                    upload_date = video_data.get('upload_date')
-                    if upload_date:
-                        try:
-                            video_dt = datetime.strptime(upload_date, '%Y%m%d')
-                        except ValueError:
-                            pass
-                
-                # Filter by datetime range if provided
-                if video_dt:
-                    if start_datetime and video_dt < start_datetime:
-                        skipped_old += 1
-                        continue
-                    if end_datetime and video_dt > end_datetime:
-                        skipped_old += 1
-                        continue
-                
-                videos.append({
-                    'url': video_url,
-                    'song': track,
-                    'artist': artist,
-                    'account': f"@{username}",
-                    'views': video_data.get('view_count', 0),
-                    'likes': video_data.get('like_count', 0),
-                    'upload_date': video_data.get('upload_date', ''),
-                    'timestamp': video_dt
-                })
-            except json.JSONDecodeError:
+
+                # Check if we got valid output (yt-dlp may return non-zero even with warnings)
+                if result.stdout.strip():
+                    # Success - parse the output
+                    videos, total_fetched, skipped_old = parse_video_output(
+                        result.stdout, username, start_datetime, end_datetime
+                    )
+
+                    date_info = ""
+                    if start_datetime and end_datetime:
+                        date_info = f" (window: {start_datetime.strftime('%Y-%m-%d %H:%M')} to {end_datetime.strftime('%Y-%m-%d %H:%M')})"
+                    elif start_datetime:
+                        date_info = f" (after {start_datetime.strftime('%Y-%m-%d %H:%M')})"
+
+                    impersonate_info = f" [impersonate={target_name}]" if impersonate_target else ""
+                    print(f"    Fetched {total_fetched} posts | {len(videos)} within window{date_info} | {skipped_old} too old{impersonate_info}")
+                    return videos
+
+                # No output - save error and try next target
+                last_error = result.stderr[:200] if result.stderr else "No output"
+                break  # Move to next impersonation target
+
+            except subprocess.TimeoutExpired:
+                last_error = f"Timeout after 120s"
+                print(f"    [TIMEOUT] Attempt {attempt + 1}/{MAX_RETRIES} with impersonate={target_name}")
                 continue
-        
-        date_info = ""
-        if start_datetime and end_datetime:
-            date_info = f" (window: {start_datetime.strftime('%Y-%m-%d %H:%M')} to {end_datetime.strftime('%Y-%m-%d %H:%M')})"
-        elif start_datetime:
-            date_info = f" (after {start_datetime.strftime('%Y-%m-%d %H:%M')})"
-        print(f"    Fetched {total_fetched} posts | {len(videos)} within window{date_info} | {skipped_old} too old")
-        return videos
-        
-    except subprocess.TimeoutExpired:
-        print(f"    [ERROR] Timeout scraping @{username}")
-        return []
-    except Exception as e:
-        print(f"    [ERROR] {e}")
-        return []
+            except Exception as e:
+                last_error = str(e)
+                break  # Move to next impersonation target
+
+    # All attempts failed
+    print(f"    [ERROR] Failed to scrape after all retries: {last_error}")
+    return []
+
+
+def parse_video_output(stdout, username, start_datetime, end_datetime):
+    """Parse yt-dlp JSON output and filter by date range"""
+    videos = []
+    total_fetched = 0
+    skipped_old = 0
+
+    for line in stdout.strip().split('\n'):
+        if not line:
+            continue
+        try:
+            video_data = json.loads(line)
+            total_fetched += 1
+
+            # Extract song info
+            track = video_data.get('track', '') or 'Unknown'
+            artist = video_data.get('artist', '') or (video_data.get('artists', [])[0] if video_data.get('artists') else 'Unknown')
+
+            # Get video URL
+            video_url = video_data.get('webpage_url') or video_data.get('url', '')
+
+            if not video_url:
+                continue
+
+            # Determine posted datetime - try multiple methods
+            video_dt = None
+
+            # Method 1: Use timestamp (most accurate)
+            timestamp = video_data.get('timestamp')
+            if timestamp:
+                try:
+                    video_dt = datetime.fromtimestamp(timestamp)
+                except (ValueError, OSError):
+                    pass
+
+            # Method 2: Use upload_date (YYYYMMDD format)
+            if not video_dt:
+                upload_date = video_data.get('upload_date')
+                if upload_date:
+                    try:
+                        video_dt = datetime.strptime(upload_date, '%Y%m%d')
+                    except ValueError:
+                        pass
+
+            # Filter by datetime range if provided
+            if video_dt:
+                if start_datetime and video_dt < start_datetime:
+                    skipped_old += 1
+                    continue
+                if end_datetime and video_dt > end_datetime:
+                    skipped_old += 1
+                    continue
+
+            videos.append({
+                'url': video_url,
+                'song': track,
+                'artist': artist,
+                'account': f"@{username}",
+                'views': video_data.get('view_count', 0),
+                'likes': video_data.get('like_count', 0),
+                'upload_date': video_data.get('upload_date', ''),
+                'timestamp': video_dt
+            })
+        except json.JSONDecodeError:
+            continue
+
+    return videos, total_fetched, skipped_old
 
 def normalize_song_key(song, artist):
     """Create normalized song key for grouping"""
@@ -255,11 +301,24 @@ Examples:
     print(f"Collecting posts from {start_datetime.strftime('%Y-%m-%d %H:%M')} to {end_datetime.strftime('%Y-%m-%d %H:%M')}\n")
     
     all_videos = []
-    
-    # Scrape each account
-    for account in accounts:
+    successful_accounts = 0
+    failed_accounts = 0
+
+    # Scrape each account with delays to avoid rate limiting
+    for i, account in enumerate(accounts):
+        # Add delay between accounts (except for the first one)
+        if i > 0:
+            print(f"    [Waiting {REQUEST_DELAY}s before next account...]")
+            time.sleep(REQUEST_DELAY)
+
         videos = scrape_account_videos(account, start_datetime=start_datetime, end_datetime=end_datetime, limit=500)
-        all_videos.extend(videos)
+        if videos is not None:  # Could be empty list (no videos in window) or actual videos
+            all_videos.extend(videos)
+            successful_accounts += 1
+        else:
+            failed_accounts += 1
+
+    print(f"\n[SUMMARY] Accounts: {successful_accounts} successful, {failed_accounts} failed out of {len(accounts)} total")
     
     print(f"\nTotal videos collected within window: {len(all_videos)}")
     

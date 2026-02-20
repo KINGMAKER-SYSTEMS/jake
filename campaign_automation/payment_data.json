@@ -1,0 +1,39 @@
+{
+  "creators": {
+    "creator@test.com": {
+      "paypal": "test@paypal.com",
+      "tiktok_username": "@testcreator",
+      "last_updated": "2026-01-20T21:49:29.317904"
+    },
+    "creator2@test.com": {
+      "paypal": "another@paypal.com",
+      "tiktok_username": "@creator2",
+      "last_updated": "2026-01-20T21:49:53.846934"
+    }
+  },
+  "payment_queue": [
+    {
+      "id": "creator2@test.com_Save Me Promo_1768963793.868544",
+      "email": "creator2@test.com",
+      "campaign": "Save Me Promo",
+      "amount": 50.0,
+      "paypal": "another@paypal.com",
+      "tiktok_username": "@creator2",
+      "added_at": "2026-01-20T21:49:53.868559",
+      "status": "pending"
+    }
+  ],
+  "payment_history": [
+    {
+      "id": "creator@test.com_Xavier Wulf Cross Cuttin R1_1768963769.346146",
+      "email": "creator@test.com",
+      "campaign": "Xavier Wulf Cross Cuttin R1",
+      "amount": 75.0,
+      "paypal": "test@paypal.com",
+      "tiktok_username": "@testcreator",
+      "added_at": "2026-01-20T21:49:29.346565",
+      "status": "paid",
+      "paid_at": "2026-01-20T21:50:13.187812"
+    }
+  ]
+}

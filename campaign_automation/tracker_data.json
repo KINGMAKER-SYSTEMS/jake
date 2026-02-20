@@ -1,0 +1,25 @@
+{
+  "requests": [
+    {
+      "id": "@newcreator_1769011080.345472",
+      "username": "@newcreator",
+      "campaign": "test campaign",
+      "paypal": "newcreator@paypal.com",
+      "timestamp": "2026-01-21T10:58:00.345488",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "id": "@newcreator_1769011097.477225",
+      "username": "@newcreator",
+      "campaign": "another campaign",
+      "paypal": "newcreator@paypal.com",
+      "timestamp": "2026-01-21T10:58:17.477233",
+      "status": "pending",
+      "notes": ""
+    }
+  ],
+  "paypal_db": {
+    "@newcreator": "newcreator@paypal.com"
+  }
+}

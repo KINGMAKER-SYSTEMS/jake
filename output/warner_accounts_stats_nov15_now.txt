@@ -1,465 +1,224 @@
-WARNER ACCOUNTS STATISTICS - NOVEMBER 15 TO NOW
+WARNER ACCOUNTS STATISTICS - DECEMBER 15 TO NOW
 ================================================================================
 
-Generated: 2025-12-08 09:59:46
-Date Range: 2025-11-15 to 2025-12-08
-Accounts processed: 4
-Total videos: 249
+Generated: 2026-02-19 13:24:51
+Date Range: 2026-02-15 to 2026-02-19
+Accounts processed: 5
+Total videos: 53
 
 
 ================================================================================
 ACCOUNT: @beaujenkins
 --------------------------------------------------------------------------------
-Total Videos: 69
-Total Views: 2,316,506
-Total Likes: 221,784
-Avg Views per Video: 33,573
+Total Videos: 11
+Total Views: 523,625
+Total Likes: 76,175
+Avg Views per Video: 47,602
 
-Songs Used (18 unique songs):
+Songs Used (3 unique songs):
 --------------------------------------------------------------------------------
 
-  Song: original sound
-  Artist: Warren Zeiders
-  Uses: 12
-  Total Views: 722,544
-  Total Likes: 35,825
-  Avg Views per Use: 60,212
-
-  Song: You For A Reason
-  Artist: Warren Zeiders
-  Uses: 8
-  Total Views: 627,375
-  Total Likes: 72,453
-  Avg Views per Use: 78,422
-
-  Song: Only Bible
-  Artist: Warren Zeiders
-  Uses: 8
-  Total Views: 268,216
-  Total Likes: 31,200
-  Avg Views per Use: 33,527
-
-  Song: With or Without Me
-  Artist: Gannon Fremin, CCREV
-  Uses: 7
-  Total Views: 171,694
-  Total Likes: 21,192
-  Avg Views per Use: 24,528
-
-  Song: Rollin' Stone (Full Band Version)
+  Song: Break Me
   Artist: Blake Whiten
-  Uses: 5
-  Total Views: 157,542
-  Total Likes: 10,489
-  Avg Views per Use: 31,508
+  Uses: 9
+  Total Views: 489,107
+  Total Likes: 74,140
+  Avg Views per Use: 54,345
 
-  Song: Love Me Too
-  Artist: Gannon Fremin, CCREV
-  Uses: 3
-  Total Views: 78,641
-  Total Likes: 15,063
-  Avg Views per Use: 26,214
-
-  Song: Hard to Break
-  Artist: Blake Whiten
-  Uses: 2
-  Total Views: 70,000
-  Total Likes: 8,807
-  Avg Views per Use: 35,000
-
-  Song: Relapse
-  Artist: Warren Zeiders
-  Uses: 2
-  Total Views: 65,200
-  Total Likes: 7,628
-  Avg Views per Use: 32,600
-
-  Song: original sound
-  Artist: Blake Whiten
-  Uses: 7
-  Total Views: 47,603
-  Total Likes: 5,644
-  Avg Views per Use: 6,800
-
-  Song: You Don't Love Me Anymore
-  Artist: Gannon Fremin, CCREV
-  Uses: 3
-  Total Views: 38,971
-  Total Likes: 3,070
-  Avg Views per Use: 12,990
-
-  Song: How Great Thou Art
-  Artist: Warren Zeiders
-  Uses: 3
-  Total Views: 17,596
-  Total Likes: 2,286
-  Avg Views per Use: 5,865
-
-  Song: Man to Man
-  Artist: Wesko
-  Uses: 2
-  Total Views: 12,889
-  Total Likes: 2,120
-  Avg Views per Use: 6,444
-
-  Song: HOLD ON
-  Artist: Wesko
+  Song: Colorblind
+  Artist: Gavin Adcock
   Uses: 1
-  Total Views: 11,800
-  Total Likes: 2,007
-  Avg Views per Use: 11,800
+  Total Views: 34,500
+  Total Likes: 2,029
+  Avg Views per Use: 34,500
 
-  Song: Pretty Little Poison
-  Artist: Warren Zeiders
+  Song: DON'T WANNA GO HOME
+  Artist: Adrien Nunez
   Uses: 1
-  Total Views: 8,732
-  Total Likes: 1,448
-  Avg Views per Use: 8,732
-
-  Song: original sound - beau jenkins 🛠️
-  Artist: Unknown
-  Uses: 1
-  Total Views: 7,744
-  Total Likes: 1,356
-  Avg Views per Use: 7,744
-
-  Song: Hate Waking Up
-  Artist: Pecos, the Rooftops
-  Uses: 2
-  Total Views: 6,874
-  Total Likes: 875
-  Avg Views per Use: 3,437
-
-  Song: I Remember Everything (feat. Kacey Musgraves)
-  Artist: Zach Bryan
-  Uses: 1
-  Total Views: 1,607
-  Total Likes: 178
-  Avg Views per Use: 1,607
-
-  Song: Crystal Visions
-  Artist: beau jenkins 🛠️
-  Uses: 1
-  Total Views: 1,478
-  Total Likes: 143
-  Avg Views per Use: 1,478
+  Total Views: 18
+  Total Likes: 6
+  Avg Views per Use: 18
 
 ================================================================================
 ACCOUNT: @codyjames6.7
 --------------------------------------------------------------------------------
-Total Videos: 66
-Total Views: 2,261,169
-Total Likes: 387,371
-Avg Views per Video: 34,260
+Total Videos: 13
+Total Views: 144,101
+Total Likes: 23,990
+Avg Views per Video: 11,085
 
-Songs Used (14 unique songs):
+Songs Used (3 unique songs):
 --------------------------------------------------------------------------------
 
-  Song: Pretty Little Poison
-  Artist: Warren Zeiders
-  Uses: 12
-  Total Views: 515,385
-  Total Likes: 92,987
-  Avg Views per Use: 42,949
-
-  Song: Hate Waking Up TEASER PRT
-  Artist: Pecos, the Rooftops
-  Uses: 3
-  Total Views: 471,649
-  Total Likes: 89,459
-  Avg Views per Use: 157,216
-
-  Song: Pink Skies
-  Artist: Zach Bryan
-  Uses: 6
-  Total Views: 416,801
-  Total Likes: 72,256
-  Avg Views per Use: 69,467
-
-  Song: Hate Waking Up
-  Artist: Pecos, the Rooftops
-  Uses: 13
-  Total Views: 326,185
-  Total Likes: 70,626
-  Avg Views per Use: 25,091
-
-  Song: original sound
+  Song: Break Me
   Artist: Blake Whiten
-  Uses: 9
-  Total Views: 202,338
-  Total Likes: 24,749
-  Avg Views per Use: 22,482
-
-  Song: Something in the Orange (Z&E's Version)
-  Artist: Zach Bryan
-  Uses: 2
-  Total Views: 186,800
-  Total Likes: 21,165
-  Avg Views per Use: 93,400
-
-  Song: original sound
-  Artist: Warren Zeiders
   Uses: 11
-  Total Views: 106,236
-  Total Likes: 12,394
-  Avg Views per Use: 9,658
+  Total Views: 132,991
+  Total Likes: 22,571
+  Avg Views per Use: 12,090
 
-  Song: Rollin' Stone (Full Band Version)
-  Artist: Blake Whiten
-  Uses: 1
-  Total Views: 15,600
-  Total Likes: 1,252
-  Avg Views per Use: 15,600
-
-  Song: You For A Reason
-  Artist: Warren Zeiders
-  Uses: 1
-  Total Views: 6,021
-  Total Likes: 504
-  Avg Views per Use: 6,021
-
-  Song: original sound
-  Artist: HighwayHomeMusic
-  Uses: 2
-  Total Views: 4,343
-  Total Likes: 553
-  Avg Views per Use: 2,172
-
-  Song: Man to Man
-  Artist: Wesko
-  Uses: 2
-  Total Views: 3,567
-  Total Likes: 614
-  Avg Views per Use: 1,784
-
-  Song: Love Me Too
-  Artist: Gannon Fremin, CCREV
-  Uses: 2
-  Total Views: 2,823
-  Total Likes: 446
-  Avg Views per Use: 1,412
-
-  Song: Driving Home for Christmas
-  Artist: Dasha
-  Uses: 1
-  Total Views: 2,076
-  Total Likes: 204
-  Avg Views per Use: 2,076
-
-  Song: OVER AGAIN by Adrien Nunez
+  Song: DON'T WANNA GO HOME
   Artist: Adrien Nunez
   Uses: 1
-  Total Views: 1,345
-  Total Likes: 162
-  Avg Views per Use: 1,345
+  Total Views: 5,754
+  Total Likes: 554
+  Avg Views per Use: 5,754
+
+  Song: Bad News
+  Artist: Zach Bryan
+  Uses: 1
+  Total Views: 5,356
+  Total Likes: 865
+  Avg Views per Use: 5,356
+
+================================================================================
+ACCOUNT: @drivetoclearmymind001
+--------------------------------------------------------------------------------
+Total Videos: 9
+Total Views: 64,420
+Total Likes: 14,598
+Avg Views per Video: 7,158
+
+Songs Used (6 unique songs):
+--------------------------------------------------------------------------------
+
+  Song: original sound
+  Artist: sophia🫀
+  Uses: 4
+  Total Views: 53,991
+  Total Likes: 12,371
+  Avg Views per Use: 13,498
+
+  Song: Stay With Me
+  Artist: Nessa Barrett
+  Uses: 1
+  Total Views: 4,998
+  Total Likes: 1,212
+  Avg Views per Use: 4,998
+
+  Song: bits + pieces
+  Artist: Casper Sage
+  Uses: 1
+  Total Views: 2,449
+  Total Likes: 467
+  Avg Views per Use: 2,449
+
+  Song: Homewrecker by sombr out feb 5th
+  Artist: sombr
+  Uses: 1
+  Total Views: 1,789
+  Total Likes: 398
+  Avg Views per Use: 1,789
+
+  Song: Thong
+  Artist: Justine Skye
+  Uses: 1
+  Total Views: 832
+  Total Likes: 89
+  Avg Views per Use: 832
+
+  Song: Homewrecker
+  Artist: sombr
+  Uses: 1
+  Total Views: 361
+  Total Likes: 61
+  Avg Views per Use: 361
+
+================================================================================
+ACCOUNT: @brew.pilled
+--------------------------------------------------------------------------------
+Total Videos: 11
+Total Views: 42,985
+Total Likes: 7,192
+Avg Views per Video: 3,908
+
+Songs Used (5 unique songs):
+--------------------------------------------------------------------------------
+
+  Song: Dont include me
+  Artist: Michael Marcagi
+  Uses: 2
+  Total Views: 14,375
+  Total Likes: 2,759
+  Avg Views per Use: 7,188
+
+  Song: original sound
+  Artist: Michael Marcagi
+  Uses: 4
+  Total Views: 13,890
+  Total Likes: 2,060
+  Avg Views per Use: 3,472
+
+  Song: Homewrecker by sombr out feb 5th
+  Artist: sombr
+  Uses: 3
+  Total Views: 12,318
+  Total Likes: 2,059
+  Avg Views per Use: 4,106
+
+  Song: The Rarest Hour
+  Artist: Amble
+  Uses: 1
+  Total Views: 1,786
+  Total Likes: 220
+  Avg Views per Use: 1,786
+
+  Song: Homewrecker
+  Artist: sombr
+  Uses: 1
+  Total Views: 616
+  Total Likes: 94
+  Avg Views per Use: 616
 
 ================================================================================
 ACCOUNT: @gavin.wilder1
 --------------------------------------------------------------------------------
-Total Videos: 62
-Total Views: 1,345,908
-Total Likes: 132,603
-Avg Views per Video: 21,708
+Total Videos: 9
+Total Views: 36,237
+Total Likes: 5,194
+Avg Views per Video: 4,026
 
-Songs Used (16 unique songs):
+Songs Used (6 unique songs):
 --------------------------------------------------------------------------------
 
-  Song: You For A Reason
-  Artist: Warren Zeiders
-  Uses: 7
-  Total Views: 405,332
-  Total Likes: 39,811
-  Avg Views per Use: 57,905
-
-  Song: Rollin' Stone (Full Band Version)
-  Artist: Blake Whiten
-  Uses: 3
-  Total Views: 319,828
-  Total Likes: 15,417
-  Avg Views per Use: 106,609
-
   Song: original sound
-  Artist: Warren Zeiders
-  Uses: 11
-  Total Views: 132,058
-  Total Likes: 14,477
-  Avg Views per Use: 12,005
+  Artist: Adrien Nunez
+  Uses: 1
+  Total Views: 10,500
+  Total Likes: 1,381
+  Avg Views per Use: 10,500
 
-  Song: With or Without Me
-  Artist: Gannon Fremin, CCREV
-  Uses: 6
-  Total Views: 107,406
-  Total Likes: 13,076
-  Avg Views per Use: 17,901
-
-  Song: Hard to Break
+  Song: Break Me
   Artist: Blake Whiten
   Uses: 4
-  Total Views: 92,230
-  Total Likes: 12,011
-  Avg Views per Use: 23,058
+  Total Views: 9,759
+  Total Likes: 1,435
+  Avg Views per Use: 2,440
 
-  Song: Hate Waking Up TEASER PRT
-  Artist: Pecos, the Rooftops
-  Uses: 4
-  Total Views: 63,896
-  Total Likes: 5,319
-  Avg Views per Use: 15,974
-
-  Song: Love Me Too
-  Artist: Gannon Fremin, CCREV
-  Uses: 2
-  Total Views: 59,400
-  Total Likes: 9,653
-  Avg Views per Use: 29,700
-
-  Song: original sound
-  Artist: Gannon Fremin &CCREV
-  Uses: 3
-  Total Views: 58,421
-  Total Likes: 11,220
-  Avg Views per Use: 19,474
-
-  Song: original sound
-  Artist: Blake Whiten
-  Uses: 7
-  Total Views: 40,581
-  Total Likes: 3,844
-  Avg Views per Use: 5,797
-
-  Song: Outskirts of Heaven (feat. Craig Campbell)
-  Artist: Warren Zeiders
-  Uses: 2
-  Total Views: 22,399
-  Total Likes: 3,571
-  Avg Views per Use: 11,200
-
-  Song: I Remember Everything (feat. Kacey Musgraves)
+  Song: Plastic Cigarette
   Artist: Zach Bryan
   Uses: 1
-  Total Views: 15,900
-  Total Likes: 1,596
-  Avg Views per Use: 15,900
+  Total Views: 8,926
+  Total Likes: 1,570
+  Avg Views per Use: 8,926
 
-  Song: OVER AGAIN by Adrien Nunez
-  Artist: Adrien Nunez
-  Uses: 4
-  Total Views: 8,756
-  Total Likes: 697
-  Avg Views per Use: 2,189
-
-  Song: Last Christmas
-  Artist: Maddox Batson
-  Uses: 3
-  Total Views: 7,696
-  Total Likes: 537
-  Avg Views per Use: 2,565
-
-  Song: Pretty Little Poison
-  Artist: Warren Zeiders
+  Song: Contagious
+  Artist: Gannon Fremin, CCREV
   Uses: 1
-  Total Views: 6,058
-  Total Likes: 792
-  Avg Views per Use: 6,058
+  Total Views: 5,322
+  Total Likes: 638
+  Avg Views per Use: 5,322
 
-  Song: original sound
-  Artist: HighwayHomeMusic
-  Uses: 3
-  Total Views: 3,722
-  Total Likes: 269
-  Avg Views per Use: 1,241
-
-  Song: Man to Man
-  Artist: Wesko
+  Song: Colorblind
+  Artist: Gavin Adcock
   Uses: 1
-  Total Views: 2,225
-  Total Likes: 313
-  Avg Views per Use: 2,225
+  Total Views: 1,696
+  Total Likes: 163
+  Avg Views per Use: 1,696
 
-================================================================================
-ACCOUNT: @coffeesentiments
---------------------------------------------------------------------------------
-Total Videos: 52
-Total Views: 271,877
-Total Likes: 40,259
-Avg Views per Video: 5,228
-
-Songs Used (11 unique songs):
---------------------------------------------------------------------------------
-
-  Song: Feel It Coming My Way
-  Artist: Penelope Road
-  Uses: 7
-  Total Views: 91,368
-  Total Likes: 22,552
-  Avg Views per Use: 13,053
-
-  Song: Swan Song Amble
-  Artist: Amble
-  Uses: 6
-  Total Views: 58,583
-  Total Likes: 3,906
-  Avg Views per Use: 9,764
-
-  Song: Chance Encounter
-  Artist: Penelope Road
-  Uses: 7
-  Total Views: 38,092
-  Total Likes: 3,107
-  Avg Views per Use: 5,442
-
-  Song: Drift Away
-  Artist: Orville Peck
-  Uses: 6
-  Total Views: 30,576
-  Total Likes: 6,370
-  Avg Views per Use: 5,096
-
-  Song: The Rarest Hour
-  Artist: Amble
-  Uses: 11
-  Total Views: 20,786
-  Total Likes: 1,986
-  Avg Views per Use: 1,890
-
-  Song: Bite My Tongue - From the Netflix Series "Nobody Wants This" Season 2
-  Artist: Cassandra Coleman
-  Uses: 6
-  Total Views: 18,003
-  Total Likes: 1,025
-  Avg Views per Use: 3,000
-
-  Song: Moonbeam
-  Artist: Cassandra Coleman
-  Uses: 4
-  Total Views: 8,215
-  Total Likes: 642
-  Avg Views per Use: 2,054
-
-  Song: original sound
-  Artist: noahrinker
-  Uses: 2
-  Total Views: 2,559
-  Total Likes: 217
-  Avg Views per Use: 1,280
-
-  Song: Second Chances
-  Artist: Gregory Alan Isakov
+  Song: Slicked Back
+  Artist: Zach Bryan
   Uses: 1
-  Total Views: 1,887
-  Total Likes: 259
-  Avg Views per Use: 1,887
-
-  Song: original sound
-  Artist: .
-  Uses: 1
-  Total Views: 1,169
-  Total Likes: 120
-  Avg Views per Use: 1,169
-
-  Song: island in the sun
-  Artist: christmasvibessss25
-  Uses: 1
-  Total Views: 639
-  Total Likes: 75
-  Avg Views per Use: 639
+  Total Views: 34
+  Total Likes: 7
+  Avg Views per Use: 34

@@ -47,6 +47,11 @@ def normalize_song_key(song, artist):
     return f"{song_clean} - {artist_clean}".strip()
 
 
+def normalize_whitespace_text(value):
+    """Normalize unicode/irregular whitespace to single spaces for robust matching."""
+    return re.sub(r'\s+', ' ', (value or '')).strip()
+
+
 def get_cache_file(account):
     """Get cache file path for an account"""
     username = get_profile_username(account)
@@ -331,6 +336,8 @@ def match_video_to_sounds(video, tracked_sounds, tracked_sound_ids=None):
     
     video_song = (video['song'] or '').strip().lower()
     video_artist_lower = (video['artist'] or '').strip().lower()
+    video_song_norm = normalize_whitespace_text(video_song)
+    video_artist_norm = normalize_whitespace_text(video_artist_lower)
     
     # For regular "What You Got" campaign: ONLY match "What You Got" by "Quail P" (not "original sound")
     # For LIVE version: handled separately below, should NOT match here
@@ -344,7 +351,13 @@ def match_video_to_sounds(video, tracked_sounds, tracked_sound_ids=None):
             # Also verify artist matches for "What You Got" to avoid matching LIVE version
             if len(sound_parts) > 1:
                 expected_artist = sound_parts[1].strip().lower()
-                if expected_artist in video_artist_lower or video_artist_lower in expected_artist:
+                expected_artist_norm = normalize_whitespace_text(expected_artist)
+                if (
+                    expected_artist in video_artist_lower or
+                    video_artist_lower in expected_artist or
+                    expected_artist_norm in video_artist_norm or
+                    video_artist_norm in expected_artist_norm
+                ):
                     return sound_key
             else:
                 return sound_key
@@ -443,6 +456,14 @@ def match_video_to_sounds(video, tracked_sounds, tracked_sound_ids=None):
                 if video.get('account') in tracked_sounds[sound_key]:
                     return sound_key
     
+    # For Cam Whitcomb / At the End of the Day: match "original sound" + "cam whitcomb" variants
+    for sound_key in tracked_sounds.keys():
+        sound_key_lower = sound_key.lower()
+        if sound_key_lower == 'at the end of the day - cam whitcomb':
+            if 'original sound' in video_song_lower and 'cam whitcomb' in video_artist_lower:
+                if video.get('account') in tracked_sounds[sound_key]:
+                    return sound_key
+
     # For Raise / Black Gummy: match "Raise" with "BlackGummy" or "Black Gummy" variations
     for sound_key in tracked_sounds.keys():
         sound_key_lower = sound_key.lower()

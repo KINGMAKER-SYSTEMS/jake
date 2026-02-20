@@ -54,8 +54,9 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # Timeout settings (much more generous)
 TIKTOK_SCRAPE_TIMEOUT = 600  # 10 minutes per account
 SOUND_ID_FETCH_TIMEOUT = 30  # 30 seconds per video (up from 15)
-MAX_WORKERS = 25  # Parallel workers for sound ID extraction (increased for speed)
+MAX_WORKERS = 15  # Parallel workers for sound ID extraction (reduced to avoid rate limiting)
 MAX_ACCOUNT_WORKERS = 5  # Parallel account scraping workers
+SOUND_ID_REQUEST_DELAY = 0.05  # Delay in seconds between sound ID requests (helps avoid rate limiting)
 
 # Early termination settings
 EARLY_TERMINATION_ENABLED = True
@@ -220,6 +221,11 @@ def extract_sound_ids_parallel(videos: List[Dict], max_workers: Optional[int] = 
     def process_video(video):
         """Process a single video and add sound ID"""
         video_url = video['url']
+
+        # Add delay to avoid rate limiting
+        if SOUND_ID_REQUEST_DELAY > 0:
+            time.sleep(SOUND_ID_REQUEST_DELAY)
+
         sound_id, song_title_from_page = extract_sound_id_from_video_robust(video_url)
 
         video_copy = video.copy()
@@ -235,11 +241,16 @@ def extract_sound_ids_parallel(videos: List[Dict], max_workers: Optional[int] = 
         future_to_video = {executor.submit(process_video, video): video for video in videos}
 
         # Process with progress bar
-        with tqdm(total=len(videos), desc="Extracting sound IDs", unit="video") as pbar:
+        successful_count = 0
+        with tqdm(total=len(videos), desc="Extracting sound IDs", unit="video",
+                  bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]') as pbar:
             for future in as_completed(future_to_video):
                 try:
                     result = future.result()
                     enhanced_videos.append(result)
+                    if result.get('extracted_sound_id'):
+                        successful_count += 1
+                    pbar.set_postfix_str(f"Extracted: {successful_count}")
                 except Exception as e:
                     video = future_to_video[future]
                     log(f"Failed to process video {video.get('url')}: {e}", "ERROR")
@@ -311,6 +322,7 @@ def scrape_tiktok_account(account: str, start_date: Optional[datetime] = None,
         return []
 
     profile_url = f"https://www.tiktok.com/@{username}"
+    print(f"  -> Starting scrape for @{username}...")
     log(f"Scraping TikTok @{username}...")
 
     # Load cache
@@ -320,7 +332,8 @@ def scrape_tiktok_account(account: str, start_date: Optional[datetime] = None,
     if use_cache:
         cached_videos, last_scrape_date = load_account_cache(account, 'tiktok')
         if cached_videos and last_scrape_date:
-            cache_cutoff_date = last_scrape_date
+            # Convert cache_cutoff_date to date object for comparison
+            cache_cutoff_date = last_scrape_date.date() if isinstance(last_scrape_date, datetime) else last_scrape_date
             scrape_from_date = max(start_date, cache_cutoff_date) if start_date else cache_cutoff_date
             cached_urls = {v.get('url') for v in cached_videos}
         else:
@@ -440,10 +453,19 @@ def scrape_tiktok_account(account: str, start_date: Optional[datetime] = None,
         # Combine cached and new
         all_videos = (cached_videos or []) + new_videos
 
-        # Save cache
+        # Save cache (all videos, unfiltered)
         if use_cache:
             save_account_cache(account, 'tiktok', all_videos, datetime.now().date())
 
+        # Filter returned videos to only those after start_date (cache keeps everything)
+        if start_date:
+            all_videos = [
+                v for v in all_videos
+                if not v.get('timestamp')
+                or (v['timestamp'].date() if isinstance(v['timestamp'], datetime) else v['timestamp']) >= start_date
+            ]
+
+        print(f"  -> Completed @{username}: {len(new_videos)} new videos, {len(all_videos)} total (after date filter)")
         log(f"TikTok @{username}: {total_fetched} fetched, {len(new_videos)} new, {skipped_old} old, {skipped_cached} cached")
 
         return all_videos
@@ -677,7 +699,11 @@ def load_campaign_csv(csv_path: str) -> Tuple[set, set, Dict]:
             for col in ['Tiktok Sound ID', 'Tiktok Sound', 'Sound ID', 'sound_id']:
                 if col in row and row[col]:
                     sound_url = row[col].strip()
-                    # Multiple regex patterns to extract ID
+                    # Check if it's already a raw numeric ID
+                    if sound_url.isdigit():
+                        sound_id = sound_url
+                        break
+                    # Multiple regex patterns to extract ID from URL
                     patterns = [
                         r'original-sound-(\d+)',
                         r'song-(\d+)',
@@ -768,19 +794,28 @@ def process_campaign(csv_path: str, start_date: Optional[datetime] = None,
             return []
 
     log(f"Scraping {len(all_accounts)} accounts in parallel with {MAX_ACCOUNT_WORKERS} workers...")
+    print(f"\n{'='*60}")
+    print(f"SCRAPING PROGRESS: 0/{len(all_accounts)} accounts completed")
+    print(f"{'='*60}\n")
 
     with ThreadPoolExecutor(max_workers=MAX_ACCOUNT_WORKERS) as executor:
         future_to_account = {executor.submit(scrape_account_wrapper, account): account
                             for account in all_accounts}
 
-        with tqdm(total=len(all_accounts), desc="Scraping accounts", unit="account") as pbar:
+        completed_count = 0
+        with tqdm(total=len(all_accounts), desc="Scraping accounts", unit="account",
+                  bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]') as pbar:
             for future in as_completed(future_to_account):
                 try:
                     videos = future.result()
                     all_videos.extend(videos)
+                    completed_count += 1
+                    account = future_to_account[future]
+                    pbar.set_postfix_str(f"Latest: {account}")
                 except Exception as e:
                     account = future_to_account[future]
                     log(f"Failed to scrape account {account}: {e}", "ERROR")
+                    completed_count += 1
                 finally:
                     pbar.update(1)
 
@@ -796,6 +831,9 @@ def process_campaign(csv_path: str, start_date: Optional[datetime] = None,
 
         if videos_needing_sound_ids:
             log(f"Extracting sound IDs from {len(videos_needing_sound_ids)}/{len(tiktok_videos)} TikTok videos (skipping {len(videos_with_sound_ids)} cached)...")
+            print(f"\n{'='*60}")
+            print(f"SOUND ID EXTRACTION: 0/{len(videos_needing_sound_ids)} videos processed")
+            print(f"{'='*60}\n")
             newly_extracted = extract_sound_ids_parallel(videos_needing_sound_ids, max_workers=workers)
 
             # Combine videos with existing sound IDs and newly extracted ones
@@ -807,9 +845,13 @@ def process_campaign(csv_path: str, start_date: Optional[datetime] = None,
 
     # Match videos to sounds
     log("Matching videos to tracked sounds...")
+    print(f"\n{'='*60}")
+    print(f"MATCHING PROGRESS: 0/{len(all_videos)} videos checked")
+    print(f"{'='*60}\n")
     matched_videos = []
 
-    for video in tqdm(all_videos, desc="Matching videos", unit="video"):
+    for video in tqdm(all_videos, desc="Matching videos", unit="video",
+                      bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]'):
         if match_video_to_sounds(video, sound_ids, sound_keys):
             matched_videos.append(video)
 
@@ -855,6 +897,13 @@ def save_results(results: Dict, output_file: Optional[str] = None):
             writer.writerow(video)
 
     log(f"Saved {len(results['videos'])} videos to {output_file}")
+
+    # Create copy-paste links file
+    links_file = output_file.with_name(output_file.stem + '_links.txt')
+    with open(links_file, 'w', encoding='utf-8') as f:
+        for video in results['videos']:
+            f.write(f"{video['url']}\n")
+    log(f"Saved links to {links_file}")
 
     return output_file
 
