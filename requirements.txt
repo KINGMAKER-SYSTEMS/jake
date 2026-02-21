@@ -2,6 +2,7 @@
 
 # Web UI
 Flask>=2.3.0
+gunicorn>=21.2.0
 
 # Excel file generation
 openpyxl>=3.0.0
