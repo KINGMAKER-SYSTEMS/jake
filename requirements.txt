@@ -4,6 +4,9 @@
 Flask>=2.3.0
 gunicorn>=21.2.0
 
+# PostgreSQL
+psycopg2-binary>=2.9.9
+
 # Excel file generation
 openpyxl>=3.0.0
 

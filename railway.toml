@@ -3,7 +3,7 @@ builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "python campaign_manager/web_dashboard.py"
+startCommand = "gunicorn campaign_manager.web_dashboard:app --bind 0.0.0.0:$PORT --workers 4 --timeout 120"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
