@@ -45,8 +45,9 @@ except ImportError:
     print("[WARNING] Instaloader not available - Instagram scraping disabled")
 
 # Configuration
-CACHE_DIR = Path("cache")
-CACHE_DIR.mkdir(exist_ok=True)
+import os
+CACHE_DIR = Path(os.environ.get("CACHE_DIR", "cache"))
+CACHE_DIR.mkdir(exist_ok=True, parents=True)
 
 OUTPUT_DIR = Path("output")
 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -128,7 +129,7 @@ def validate_video_data(video_data: Dict, platform: str) -> bool:
     # Validate URL format
     url = video_data['url']
     if platform == 'tiktok':
-        if 'tiktok.com' not in url or '/video/' not in url:
+        if 'tiktok.com' not in url or ('/video/' not in url and '/photo/' not in url):
             raise ValidationError(f"Invalid TikTok URL format: {url}")
     elif platform == 'instagram':
         if 'instagram.com' not in url:
