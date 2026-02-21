@@ -98,22 +98,42 @@ def migrate_campaigns(dry_run: bool = True) -> int:
     with db.get_db() as conn:
         cur = db._cursor(conn)
         for row in deduped:
+            # Each insert gets its own connection so one failure doesn't abort the batch
             try:
-                cur.execute(
-                    """
-                    INSERT INTO campaigns
-                        (title, artist, song, tiktok_sound_id, cobrand_link, round, label, pipeline_status)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                    ON CONFLICT (tiktok_sound_id) DO NOTHING
-                    """,
-                    (
-                        row["title"], row["artist"], row["song"],
-                        row["tiktok_sound_id"], row["cobrand_link"],
-                        row["round"], row["label"], row["pipeline_status"],
-                    ),
-                )
-                if cur.rowcount > 0:
-                    inserted += 1
+                with db.get_db() as _conn:
+                    _cur = db._cursor(_conn)
+                    if row["tiktok_sound_id"]:
+                        # Use partial-index-aware ON CONFLICT
+                        _cur.execute(
+                            """
+                            INSERT INTO campaigns
+                                (title, artist, song, tiktok_sound_id, cobrand_link, round, label, pipeline_status)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                            ON CONFLICT (tiktok_sound_id)
+                                WHERE tiktok_sound_id IS NOT NULL AND tiktok_sound_id != ''
+                            DO NOTHING
+                            """,
+                            (
+                                row["title"], row["artist"], row["song"],
+                                row["tiktok_sound_id"], row["cobrand_link"],
+                                row["round"], row["label"], row["pipeline_status"],
+                            ),
+                        )
+                    else:
+                        _cur.execute(
+                            """
+                            INSERT INTO campaigns
+                                (title, artist, song, tiktok_sound_id, cobrand_link, round, label, pipeline_status)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                            """,
+                            (
+                                row["title"], row["artist"], row["song"],
+                                None, row["cobrand_link"],
+                                row["round"], row["label"], row["pipeline_status"],
+                            ),
+                        )
+                    if _cur.rowcount > 0:
+                        inserted += 1
             except Exception as e:
                 print(f"    [warn] Skipped '{row['title']}': {e}")
 
@@ -151,7 +171,7 @@ def migrate_paypal_registry(dry_run: bool = True) -> int:
         psycopg2.extras.execute_values(
             cur,
             """
-            INSERT INTO creator_paypal (username, paypal, updated_at)
+            INSERT INTO creator_paypal (username, paypal)
             VALUES %s
             ON CONFLICT (username) DO UPDATE
                 SET paypal = EXCLUDED.paypal, updated_at = NOW()
